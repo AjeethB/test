@@ -1,55 +1,27 @@
 ---
-
 - name: Create OpenStack Project
-
   hosts: openstack
-
   gather_facts: no
-
   vars:
-
     auth:
-
       auth_url: "https://10.40.140.223:13000"  # Replace with your actual auth URL
-
       username: "admin"               # Replace with your actual username
-
       password: "HgM8IqGFqZOTE0gLpJdAgYQAn"               # Replace with your actual password
-
       project_name: "admin"       # Replace with your actual project name
-
       user_domain_name: "default"             # Replace with your actual user domain name
-
       project_domain_name: "default"          # Replace with your actual project domain name
-
     project_name: "MyNewProject"
-
     project_description: "My new project description"
-
     domain_id: "default"
 
-
-
   tasks:
-
     - name: Create OpenStack Project
-
       openstack.cloud.project:
-
         cloud: "{{ auth }}"
-
         name: "{{ project_name }}"
-
         description: "{{ project_description }}"
-
         domain_id: "{{ domain_id }}"
-
       register: project
-
-
-
     - name: Print the result
-
       debug:
-
         var: project
